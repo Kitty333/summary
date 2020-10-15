@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>picture source media</h1>
+    <picture>
+        <source media="(max-width:480px)" srcset="img/480.jpg" >
+        <source media="(max-width:640px)" srcset="img/640.jpg" >
+        <source media="(max-width:720px)" srcset="img/720.jpg" >
+        <img src="img/720.jpg" alt="响应式图片">
+    </picture>
+    <h1>srcset响应式布局</h1>
+    <img sizes="(min-width:900px) 900px , 100vw"
+          srcset="img/480.jpg 480w,
+                img/640.jpg 640w,
+                img/720.jpg 720w,"
+          src="img/720.jpg" alt="响应式图片" />
+</body>
+</html>
