@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+    h1{
+      font-size: 20px;
+      text-align: center;
+      color: chocolate;
+    }
+    .table{
+      font-size: 15px;
+      width: 70%;
+      margin: 5px auto;
+      border: 1px solid gray;
+      box-shadow: 2px 2px 8px grey;
+    }
+    .table td{
+      padding: 10px;
+    }
+    .table thead td{
+      background-color: cadetblue;
+      text-align: center;
+      font-weight: bold;
+    }
+    td{
+      border: 1px solid gray;
+    }
+    @media (max-width:640px) {
+      .table{
+        border: none;
+        box-shadow: none;
+        
+      }
+      .table thead{
+        display: none;
+      }
+      tr,td{
+        border: none;
+        display: block;
+        position: relative;
+      }
+      td.num{
+        background-color:  cadetblue;
+        padding-left: 25%;
+      }
+      td.num::before{
+        content: "课程序号";
+        font-weight: bold;
+        position: absolute;
+        left: 5px;
+        top: 8px;
+      }
+      td.name{
+        padding-left: 25%;
+      }
+      td.name::before{
+        content: "课程名称";
+        font-weight: bold;
+        position: absolute;
+        left: 5px;
+        top: 8px;
+      }
+      td.active{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+      tr{
+        margin-bottom: 15px;
+        box-shadow: 2px 2px 8px grey;
+      }
+
+    }
+    
+</style>
+<body>
+    <h1>福州理工相关课程</h1>
+    <table class="table" cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <td>课程序号</td>
+          <td>课程名称</td>
+          <td>课程操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">11111</td>
+          <td class="name">移动应用开发</td>
+          <td class="active">
+            <a href="#">Edit</a>
+            <a href="#">Remove</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="num">22222</td>
+          <td class="name">web前端开发课程</td>
+          <td class="active">
+            <a href="#">Edit</a>
+            <a href="#">Remove</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="num">33333</td>
+          <td class="name">操作系统&数据库系列课程</td>
+          <td class="active">
+            <a href="#">Edit</a>
+            <a href="#">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+
+</body>
+</html>
