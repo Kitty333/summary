@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖放</title>
+</head>
+<style>
+  #box{
+    height: 400px;
+    width: 700px;
+    background: burlywood;
+  }
+</style>
+<script>
+  function over(ev){
+	  ev.preventDefault();
+	}
+	function start(ev){
+	  ev.dataTransfer.setData("Text",ev.target.id);
+	}
+	function drop(ev){
+	  ev.preventDefault();
+	  var data=ev.dataTransfer.getData("Text");
+	  ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+<body>
+  
+  <div id="box" ondragover="over(event)" ondrop="drop(event)"></div>
+  <img id="img1" src="img/480.jpg" draggable="true" ondragstart="start(event)" />
+  <dl></dl>
+    <dt>拖元素：</dt>
+        <dd>dragstart：当元素开始被拖拽得时候触发</dd>
+        <dd>drag:这个事件在拖拽时触发（持续）</dd>
+        <dd>dragend:拖拽结束触发</dd>
+    <dt>放元素：</dt>
+        <dd>dragenter:拖曳元素进入目标元素的时候触发</dd>
+        <dd>dragover:拖拽元素在目标元素上移动的时触发（持续）<br/>
+          【放开鼠标默认为离开事件，用preventDefault()阻止默认事件发生】
+        </dd>
+                
+        <dd>dragleave:拖拽中鼠标离开元素触发</dd>
+        <dd>ondrop:被拖拽的元素在目标元素上同时鼠标放开触发的事件</dd>
+  </p>
+</body>
+</html>
