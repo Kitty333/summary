@@ -1,0 +1,46 @@
+5种方法去掉HTML中Inline-Block元素之间的空白
+方法一：各元素间不留任何空白
+  换行导致的，就将代码全部写在一排
+  例：
+      <ul><li>Item content</li><li>Item content</li><li>Item content</li></ul>
+
+方法二：在父元素上设置font-size: 0
+  将元素的父级元素字符尺寸直接设为0（font-size:0），然后元素中的其他文字就不见了，
+  因为其尺寸被设为0px了，我们只好将他们重新设定字符尺寸。
+  例：
+      ul{
+	      font-size: 0;
+      }
+      li {
+	      font-size: 14px; 
+      }
+
+方法三：HTML注释
+  这种方法有点暴力，但同样能奏效。将HTML元素间用注释填充，这跟它们之间没有空白效果一样
+  例：
+      <ul>
+        <li>Item content</li><!--
+      --><li>Item content</li><!--
+      --><li>Item content</li>
+      </ul>
+
+方法四：负边距
+  跟方法2很相似，抱歉。你可以利用inline-block的灵活性，给它们设置一个负边距，隐藏空白：
+  例：
+      li {
+        margin-left: -4px;
+      }
+
+方法五：首尾接龙
+  例：
+     <ul>
+        <li>Item content</li
+      ><li>Item content</li
+      ><li>Item content</li>
+      </ul>
+
+方法六：
+  既然设置字符大小为0不行，那咱就将间隔消除了。
+  同样随来而来的问题是li内的字符间隔也被设置了，我们需要将li内的字符间隔设为默认。
+  ul{letter-spacing: -4px;}
+  ul li{letter-spacing: normal;}
