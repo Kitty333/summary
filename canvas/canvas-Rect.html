@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas绘制图形</title>
+</head>
+<style>
+
+</style>
+<script>
+  window.onload = function(){
+    createCanvas();
+    //drawRect();
+    //drawImage();
+    drawarc();
+  }
+  var height = 400;
+  var width = 400;
+    function createCanvas(){
+    //js创建canvas
+    document.body.innerHTML = "<canvas id=\"canvas\" width = \""+width+"\" height = \""+height+"\" ></canvas>";
+    mycanvas = document.getElementById("canvas");
+    if(mycanvas.getContext){
+      context = mycanvas.getContext("2d");//用来渲染上下文和绘画功能
+    }
+  }
+
+  /* 绘制矩形
+  function drawRect(){
+    context.fillStyle = "#ff0000";//填充颜色（默认黑色）
+    context.rotate(45);//旋转
+    context.translate(200,200);//移动
+    context.scale(2,0.5);//缩放
+    context.fillRect(10,10,400,400);//绘画矩形
+  } */
+
+  /* 绘制图片
+  function drawImage(){
+    var img = new Image();//创建一个image对象
+    img.onload = function(){
+      context.drawImage(img,5,5);//绘制图片，图片、x偏移量、y偏移量
+    }
+    img.src = "img/480.jpg";
+  } */
+
+  //绘制圆形(绘制路径)
+  function drawarc(){
+    //先绘制矩形然后把圆形呈现在矩形当中
+    context.fillStyle="#eeeeef";
+    context.fillRect(0,0,500,500);
+    //arc(中心x坐标，中心y坐标，圆半径，起始角，结束角，顺逆) 
+    for(var i=0 ; i<=5 ; i++){
+      context.beginPath();//开始绘画
+      context.arc(i*25,i*25,i*10,0,Math.PI*2,true);
+      context.closePath();//关闭绘画，如果没有关闭，前面的圆形每次循环都会跟着绘画一次
+      context.fillStyle="rgba(255,0,0,0.2)";//指定绘制样式的颜色
+      context.fill();//填充当前的图像
+    }
+  }
+</script>
+<body>
+  <!-- 创建canvas -->
+  <!-- <canvas id="canvas" height="500px" width="500px"></canvas> -->
+</body>
+</html>

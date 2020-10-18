@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制圆弧</title>
+</head>
+<script>
+  function drawcurve(id){
+    var mycanvas = document.getElementById(id);
+    var context;
+    if(mycanvas.getContext){
+      context = mycanvas.getContext("2d");
+    }
+  //用arc画圆弧
+    //闭合的圆弧
+    context.beginPath();
+    context.arc(50,50,40,0,Math.PI/2,true);
+    context.closePath();
+    context.stroke();
+    //未闭合就不要closePath（）
+    context.beginPath();
+    context.arc(150,50,40,0,Math.PI/2,false);
+    context.stroke();
+
+  //用arcTo画圆弧
+    context.beginPath();
+    context.moveTo(150,150)
+    context.arcTo(150,180,180,180,30);
+    context.stroke();
+
+  //二次贝塞尔曲线
+    context.beginPath();
+    context.moveTo(50,400);
+    context.strokeStyle = "rgb(0,245,100)"
+    var cp1x = 40, cp1y = 100;  //控制点
+    var x = 200, y = 200; // 结束点
+    context.quadraticCurveTo(cp1x,cp1y,x,y);
+    context.stroke();
+
+  //三次贝塞尔曲线
+  context.beginPath();
+    context.moveTo(400,400);
+    context.strokeStyle = "rgb(58,245,100)"
+    var cp1x = 500, cp1y = 200;  //控制点1
+    var cp2x = 700, cp2y = 250;  //控制点2
+    var x = 850, y = 450; // 结束点
+    context.bezierCurveTo(cp1x,cp1x,cp2x,cp2y,x,y);
+    context.stroke();
+    
+  //复杂例子：
+    var dx = 400;
+    var dy = 150;
+    var s = 100;
+    var dig = Math.PI/15*11;//角度转换成弧度
+    context.beginPath();//开始绘画
+    context.fillStyle = "rgb(100,255,100)";//填充绘画颜色
+    context.strokeStyle = "rgb(0,0,100)";//绘画线条
+    context.moveTo(dx,dy);
+    for(var i=0; i<30 ; i++){
+      var y = Math.cos(i*dig);
+      var x = Math.sin(i*dig);
+      context.bezierCurveTo(dx+x*s,dy+y*s-100,dx+x*s+100,dy+y*s,dx+x*s,dy+y*s);//绘画终点
+    } 
+    context.closePath();//关闭绘画
+    context.fill();//填充描绘
+    context.stroke();//线条描绘
+
+  }
+</script>
+<body onload="drawcurve('canvas')">
+  <canvas id="canvas" width="1000px" height="1000px"></canvas>
+</body>
+</html>

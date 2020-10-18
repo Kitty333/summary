@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  function draw(id){
+    var mycanvas = document.getElementById(id);
+    var context;
+    if(mycanvas.getContext){
+      context = mycanvas.getContext("2d");
+    }
+    var types = new Array(
+      "source-over",
+      "source-in",
+      "source-out",
+      "source-atop",
+      "destination-over",
+      "destination-in",
+      "destination-out",
+      "destination-atop",
+      "lighter",
+      "copy",
+      "xor"
+    )
+    var i = 9;
+    context.fillStyle = "blue";
+    context.fillRect(20,20,200,100);
+    context.globalCompositeOperation = types[i];
+    context.beginPath();
+    context.fillRect = "red";
+    context.arc(75,100,20,0,Math.PI*2,true);
+    context.closePath();
+    context.fill();
+  }
+
+</script>
+<body onload="draw('canvas')">
+  <canvas id="canvas" width="1000px" height="1000px"></canvas>
+</body>
+</html>

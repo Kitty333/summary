@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绘制路径</title>
+</head>
+
+<script>
+  function drawline(id){
+    var canvas = document.getElementById(id);
+    var context;
+    if(canvas.getContext){
+      context = canvas.getContext("2d");
+    }
+    context.fillStyle = "#eeeeef";//矩形颜色填充
+    context.fillRect(0,0,400,400);//绘制矩形
+    var dx = 150;
+    var dy = 150;
+    var s = 100;
+    var dig = Math.PI/15*11;//角度转换成弧度
+    context.beginPath();//开始绘画
+    context.fillStyle = "rgb(100,255,100)";//填充绘画颜色
+    context.strokeStyle = "rgb(0,0,100)";//绘画线条
+    for(var i=0; i<30 ; i++){
+      var y = Math.cos(i*dig);
+      var x = Math.sin(i*dig);
+      context.lineTo(dx+x*s,dy+y*s);//绘画终点
+    } 
+    context.closePath();//关闭绘画
+    context.fill();//填充描绘
+    context.stroke();//线条描绘
+
+    //绘制五角星
+    var dx = 300;
+    var dy =300;
+    var s = 50;
+    context.beginPath();
+    context.fillStyle = "rgba(255,0,0,0.5)";
+    var dig = Math.PI/5*4;
+    for(var i=0;i<5;i++){
+      var x = Math.sin(i*dig);
+      var y = Math.cos(i*dig);
+      context.lineTo(dx+x*s,dy+y*s);
+    } 
+    context.closePath();   
+    context.fill();
+
+
+    //简单案例
+    context.beginPath();
+    context.strokeStyle = "rgb(0,0,100)"
+    context.moveTo(10,10);
+    context.lineTo(50,50);
+    context.closePath();
+    context.stroke();
+  }
+</script>
+<body onload="drawline('canvas')">
+  <canvas id="canvas" width="500px" height="500px"></canvas>
+</body>
+</html>

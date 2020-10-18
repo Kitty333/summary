@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>剪切图片</title>
+</head>
+<script>
+  function draw(id){
+    var mycanvas = document.getElementById(id);
+    var context;
+    if(mycanvas.getContext){
+      context = mycanvas.getContext("2d");
+    }
+    /* clip()只能遮罩在这个方法调用之后绘制的图像
+    后面的矩形别剪切了
+    context.beginPath();
+    context.arc(20,20, 100, 0, Math.PI * 2);
+    context.clip();
+
+    context.fillStyle = "pink";
+    context.fillRect(20, 20, 100,100); */
+
+    //案例二
+    context.fillRect(0,0,150,150);
+    context.translate(75,75);
+    // Create a circular clipping path
+    context.beginPath();
+    context.arc(0,0,60,0,Math.PI*2,true);
+    context.clip();
+    // draw background
+    var lingrad = context.createLinearGradient(0,-75,0,75);
+    lingrad.addColorStop(0, '#232256');
+    lingrad.addColorStop(1, '#143778');
+    context.fillStyle = lingrad;
+    context.fillRect(-75,-75,150,150);
+    // draw stars
+    for (var j=1;j<50;j++){
+      context.save();
+      context.fillStyle ='#fff';
+      context.translate(75-Math.floor(Math.random()*150),
+                  75-Math.floor(Math.random()*150));
+      star(context,Math.floor(Math.random()*4)+2);
+      context.restore();
+    }
+  }
+  function star(context,r){
+      context.save();
+      context.beginPath()
+      context.moveTo(r,0);
+      for (var i=0;i<9;i++){
+        context.rotate(Math.PI/5);
+        if(i%2 == 0) {
+          context.lineTo((r/0.525731)*0.200811,0);
+        } else {
+          context.lineTo(r,0);
+        }
+      }
+      context.closePath();
+      context.fill();
+      context.restore();
+    }
+
+</script>
+<body onload="draw('canvas')">
+  <canvas id="canvas" width="1000px" height="1000px"></canvas>
+</body>
+</html>
