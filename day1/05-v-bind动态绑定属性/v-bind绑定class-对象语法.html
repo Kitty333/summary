@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .active{
+    color: red;
+}
+</style>
+
+<body>
+  <div id="app">
+   <!--  v-bind:class= "{类名1：boolean，类名2：boolean}" -->
+    <p v-bind:class = "{active : isActive}">你真美！</p>
+   <!--  使用放到函数里面的要使用（） -->
+    <p v-bind:class = "getClass()">你真美！</p>
+    <button @click ="btn">anniu</button>
+  </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"你好呀",
+      isActive:true
+    },
+    methods:{
+      btn:function(){
+        this.isActive = !this.isActive
+      },
+      getClass:function(){
+        return {active : this.isActive}
+      }
+    }
+    
+  })
+</script>
+</html>

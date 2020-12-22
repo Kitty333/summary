@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 我们拿到event的时候目的时进行一些事件的处理 -->
+  <div id="app">
+    <!-- .stop停止冒泡 -->
+    <div @click="divClick">123
+      <button @click.stop="btnClick">你好</button>
+    </div>
+    <!-- .prevent阻止默认事件 -->
+    <form action="www.baidu.com" @click.prevent="formClick">
+      <button type="submit">提交</button>
+    </form>
+    <!-- 监听某个键盘的键帽（enter回车） -->
+    <input type="text" @keyup.enter="keyClick">
+    <!-- once修饰符的使用 -->
+    <button @click.once="onceClick">once</button>
+  </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"你好呀"
+    },
+    methods:{
+      divClick(){
+        console.log("divClick")
+      },
+      btnClick(){
+        console.log("btnClick")
+      },
+      formClick(){
+        console.log("formClick")
+      },
+      keyClick(){
+        console.log("keyClick")
+      },
+      onceClick(){
+        console.log("once")
+      }
+    }
+  })
+</script>
+
+</html>

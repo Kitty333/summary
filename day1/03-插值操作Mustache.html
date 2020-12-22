@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mustache操作</title>
+</head>
+<body>
+  <div id="app">
+    <h3> {{message}} </h3>
+    <h3> {{message}} {{largeName}} </h3>
+    <h3> {{message + largeName}} </h3>
+    <h3> {{message}}haha </h3>
+    <h3> {{count * 2}} </h3>
+    <h3> {{count + 1}} </h3>
+  </div>
+</body>
+<script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message : "在干么",
+        largeName : "hsn",
+        smallName : "haha",
+        count: 100
+      }
+    })
+  </script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+ <!--  会出现input复用问题，用不同的key解决 -->
+  <div id="app">
+    <div v-if="isShow">
+      <label for="username">用户登录</label>
+      <input type="text" id="username" placeholder="用户登录" key="username">
+    </div>
+    <div v-else>
+      <label for="email">邮箱登录</label>
+      <input type="text" id="email" placeholder="邮箱登录" key="email">
+    </div>
+    <button @click="isShow = !isShow">点击切换</button>
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      isShow:true
+    }
+  })
+</script>
+</html>

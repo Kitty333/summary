@@ -1,0 +1,11 @@
+path:"/user/:userid"
+
+<router-link :to="'/user/'+userId" >用户</router-link>
+
+data(){
+    return {
+      userId: "hsn"
+    }
+  }
+  
+<p> {{$route.params.userid}} </p>

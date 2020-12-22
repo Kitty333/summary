@@ -1,0 +1,9 @@
+keep-alive会保存组件的状态，不会被销毁，
+
+活跃：activated()和不活跃：deactivated()，只有在该组件被保持了状态，也就是
+使用了keep-alive时，才有效
+
+可以直接在App.vue使用  如果不行使用的话用exclude除外
+<keep-alive exclude="user,home">    //记得逗号前后都不可以有空格
+  <router-view></router-view>
+</keep-alive>

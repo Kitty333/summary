@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="book in books"> {{book}} </li>
+    </ul>
+    <ul>
+      <li v-for="(book,index) in books"> {{index}} . {{book}} </li>
+    </ul>
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      books:["xixi","haha","hehe"]
+    }
+  })
+</script>
+</html>

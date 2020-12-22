@@ -1,0 +1,22 @@
+1、安装
+  npm install axios --save
+2、调用
+  import axios from 'axios'
+  axios({
+    url: ""
+  }).then(res => {
+    console.log(res);
+  })
+
+3、axios发送并发请求
+  axios.all([axios({}),axios()])
+    .then(results => {
+      console.log(results);
+    })
+    或者
+    axios.all([axios({}),axios()])
+    .then(results.spread((res1,res2) => {
+      console.log(res1);
+      console.log(res2);
+    })
+    })

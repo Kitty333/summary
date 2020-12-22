@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 插槽的基本使用<slot></slot> -->
+  <!-- 里面可以是默认值<slot><button>按钮</button></slot> -->
+  <!-- 插槽是让我们封装的组件更有扩展性 -->
+  <div id="app">
+    <cpn>
+      <button>吃饭</button>
+    </cpn>
+    <cpn>
+      <button>唱歌</button>
+      <i>好的</i>
+    </cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+</body>
+<template id="cpn">
+  <div>
+    <h3>你在干么</h3>
+    <!-- 默认是一个按钮 -->
+    <slot><button>睡觉</button></slot>
+  </div>
+  
+</template>
+<script src="./vue.js"></script>
+<script>
+
+  const cpn = {
+    template :"#cpn"
+  }
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"你好呀"
+    },
+    components:{
+      cpn
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 使用mustache很麻烦 -->
+    <p> {{firstName}} {{lastName}} </p>
+    <!-- 使用computed方法计算，函数不需要加（） -->
+    <p> {{name}} </p>
+    <!-- 使用methods方法计算, getName()需要加（）-->
+    <p> {{getName()}} </p>
+    <!-- methods调用多次，computed只调用一次 -->
+    <h3>书的总价格：{{total}}</h3>
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      firstName:"hsn",
+      lastName:"hxw",
+      books:[
+        {id:100,name:"哈哈",price:100},
+        {id:101,name:"嘻嘻",price:99},
+        {id:101,name:"嘿嘿",price:88},
+      ]
+    },
+    computed:{
+      name:function(){
+        return this.firstName + " " + this.lastName;
+      },
+      /* total:function(){
+        let result = 0;
+        for(let i = 0;i<this.books.length;i++){
+          result += this.books[i].price;
+        }
+        return result;
+      } */
+      /* total:function(){
+        let result = 0;
+        for(let i in this.books){
+          result += this.books[i].price;
+        }
+        return result;
+      } */
+      total:function(){
+        let result = 0;
+        for(let book of this.books){
+          result += book.price;
+        }
+        return result;
+      }
+    },
+    methods:{
+      getName:function(){
+        return this.firstName + " " + this.lastName;
+      }
+    }
+  })
+</script>
+</html>

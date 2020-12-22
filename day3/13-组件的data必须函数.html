@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+</body>
+
+<template id="cpn">
+  <div>
+    <h2>当前计算：{{counter}}</h2>
+    <button @click="re" :disabled="0 >= counter">--</button>
+    <button @click="add">++</button>
+  </div>
+</template>
+
+<script src="./vue.js"></script>
+<script>
+
+  Vue.component("cpn",{
+    template:"#cpn",
+    data(){
+      return {
+        counter:0
+      }
+    },
+    methods:{
+      re(){
+        return this.counter--;
+      },
+      add(){
+        return this.counter++;
+      }
+    }
+  })
+
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"你好呀"
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .active{
+    color: red;
+  }
+</style>
+<body>
+  <!-- 需求，点击列表的哪一项，该项的文字点成红色 -->
+  <div id="app">
+    <ul>
+      <li @click="liClick(index)" :class="{active : currenIndex === index}" 
+          v-for="(item,index) in books"> {{item}} </li>
+    </ul>
+  </div>
+    
+
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      books:["蛋糕","奶茶","QQ糖","饼干"],
+      currenIndex:0
+    },
+    methods:{
+      liClick(index){
+        this.currenIndex = index;
+      }
+    }
+  })
+
+</script>
+</html>

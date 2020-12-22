@@ -1,0 +1,29 @@
+一、怎么使用导航守卫
+（1）全局守卫
+  1、在路由配置上加
+    meta: {
+      title: "首页"
+    }
+  2、router.beforeEach((to, from, next) => {  //前置守卫（在跳转路由之前实现）
+        // 从from跳转到to
+        document.title = to.matched[0].meta.title
+        next()  //下一步
+    })
+
+    //后置钩子（hook）不需要调用next()
+    router.afterEach((to, from) => { 
+    
+    }
+（2）独享守卫
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/foo',
+          component: Foo,
+          beforeEnter: (to, from, next) => {
+            next()   //一定要有
+          }
+        }
+      ]
+    })
+

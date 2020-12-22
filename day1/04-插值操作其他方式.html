@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插值的其他操作</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 添加的v-once不会随数据的改变而改变 -->
+    <h2> {{message}} </h2>
+    <h2 v-once> {{message}} </h2>
+    <!-- v-html 会按照html格式进行解析 -->
+    <h2> {{url}} </h2>
+    <h2 v-html = "url"></h2>
+    <!-- v-text用法不灵活，跟{{}}相似 -->
+    <h2 v-text = "message"></h2>
+    <!-- v-pre跳过编译过程，直接显示原本的mastache语法 -->
+    <h2 v-pre> {{message}} </h2>
+   <!--  v-cloak,某些时候浏览器可能会显示出没解析的mastache语法就使用v-cloak,
+    然后添加样式【v-cloak】{
+      display:none;
+    } -->
+  </div>
+</body>
+<script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message : "在干么",
+        url : "<a href = 'http://www.baidu.com'>百度一下</a>"
+      }
+    })
+  </script>
+</html>

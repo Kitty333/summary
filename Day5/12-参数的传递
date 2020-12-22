@@ -1,0 +1,23 @@
+参数传递的两种方式params和query
+1、params
+  路由配置的格式：/router/：id
+  传递的方式：在path后面跟上对应的值（指的是id的值）
+  <router-link ：to=“/router/”+userId"></router-link>
+  data(){
+    return{
+      userId: "Lisi"
+    }
+  }
+  传递后形成的路径：/router/Lisi
+  获取id参数Lisi
+  this.$route.id
+
+2、query
+  配置路由的格式：/router
+  传递的方式，对象中使用query的key作为传递方式
+  <router-link :to="{path: '/router', query: {id: '123',age: '12'} }"></router-link>
+  传递后行车的路径：/router？id=123&age=12
+  获取传的参数
+  this.$route.query
+  this.$route.query.id 
+  this.$route.query.age

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn :cmessage="message" :carea="area" @areachange="areachange"  @messagechange="messagechange"></cpn>
+  </div>
+</body>
+<template id="cpn">
+  <div>
+   <!-- v-model是v-bind:value和@input的结合 -->
+    <!-- <input type="text"  v-model="zmessage"> -->
+    <input type="text" :value="zmessage" @input="zmessageinput">
+    <h3> data：{{zmessage}} </h3>
+    <h3> props：{{cmessage}} </h3>
+    <!-- <input type="text"  v-model="zarea"> -->
+    <input type="text" :value="zarea" @input="zareainput">
+    <h3> props：{{carea}} </h3>
+    <h3> data：{{zarea}} </h3>
+  </div>
+</template>
+<script src="./vue.js"></script>
+<script>
+
+  const cpn ={
+    template:"#cpn",
+    //双向绑定的时候，子和父都要有data
+    //子组件要初始化一下props的数据
+    data(){
+      return{
+        zmessage:this.cmessage,
+        zarea:this.carea
+      }
+    },
+    /* props:["cmessage","carea"], */
+    props:{
+      cmessage:{
+        type:Number,
+        default:"1"
+      },
+      carea:{
+        type:Number,
+        default:"2"
+      }
+    },
+    methods:{
+      zmessageinput(event){
+        //将input中的值赋值到zmessage
+        this.zmessage = event.target.value;
+
+        //为了让父组件可以修改，发出一个事件
+        this.$emit("messagechange",this.zmessage);
+
+        //同时修改message的值
+        this.zarea = this.zmessage * 100
+        this.$emit("areachange",this.zarea);
+      },
+      zareainput(event){
+        //将input中的值赋值到zarea
+        this.zarea = event.target.value;
+
+        //为了让父组件可以修改，发出一个事件
+        this.$emit("areachange",this.zarea);
+
+        //同时修改area的值
+        this.zmessage = this.zarea / 100;
+        this.$emit("messagechange",this.zmessage);
+
+      }
+      
+    }
+  }
+
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:1,
+      area:2
+    },
+    components:{
+      cpn
+    },
+    methods:{
+      areachange(value){
+        //传的是一个String类型，要转换
+       // console.log(typeof value);
+        this.area = parseFloat(value)
+      },
+      messagechange(value){
+        //传的是一个String类型，要转换
+       // console.log(typeof value);
+        this.message = parseFloat(value)
+      }
+    }
+    
+  })
+</script>
+</html>

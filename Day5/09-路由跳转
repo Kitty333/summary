@@ -1,0 +1,9 @@
+
+
+点击按钮调转路由
+@click="home()"
+home{
+  this.$router.push("/home")
+}
+如果不想用push，就用replace,reolace没有返回
+  

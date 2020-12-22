@@ -1,0 +1,139 @@
+1、什么是vuex？？
+    组件中的状态可以共享（状态管理）
+
+2、安装
+    npm install vuex --save
+
+3、创建一个文件夹store，然后index.js调用vuex
+    import Vue from "vue"
+    import Vuex from "vuex"
+    Vue.use(Vuex)   //安装插件
+    创建对象
+    const store = new Vuex.Store({
+      state: {},       //用共享的状态，使用方法：$store.state.XXX
+      mutations: {},   //里面写方法，方法里默认一个参数state，需要参数的话直接在后面加
+      actions: {},     //如果 mutations里面有异步操作的话就使用actions来替代，默认属性context
+      getters: {},     //获取一些state变异后的状态，参数默认state，
+                          还有一个参数getters就是可以取到getters里的参数，
+                          如果要使用参数，需要返回一个function() {}
+      modules: {}      //模块的意思，vuex允许我们store分割成模块，
+                          每个模块拥有自己的state、mutation、actio、getters
+    })
+    导出store对象
+    export default store
+
+4、在main.js引用
+    import store from "./store"
+    new Vue({
+      el: '#app',
+      store,
+      render: h => h(App) 
+    })
+
+5、state
+    通过this.$store.state属性的方式来访问状态
+
+6、mutations
+   通过this.$store.commit('mutation中方法')来修改状态
+
+6、在getters中获取一些state变异后的状态
+    在组件中获取变异后的数据：$store.getters.方法名
+
+7、mutation两种提交风格
+    1、
+      this.$store.commit({
+        type: 'changeCount',
+        count: 100
+      })
+    mutation处理方式是将commit对象作为payload使用
+      changeCount(state,payload) {
+        state.count += payload.count  //结果是一个对象
+      }
+
+    2、
+      this.$store.commit('changeCount',count)
+    mutation处理方式
+      changeCount(state,count) {
+        state.count += count  //结果是一个数值
+      }
+
+8、vuex中的响应式是已经在state中初始化的属性，后面添加的属性是不会发生响应式的
+    如果是响应式的需要使用set（对象，索引值，修改值）
+
+9、actions处理异步操作,默认一个参数context，上下文相当于store
+    actions： {
+      aupdateInfo(context) {
+        setTimeout(()=>{
+          context.commit("updateInfo");
+        },1000)
+      }
+    }
+    updateInfo() {
+      this.$store.dispatch('aupdateInfo')
+    }
+    里面加一个参数
+    actions： {
+      aupdateInfo(context,payload) {
+        setTimeout(()=>{
+          context.commit("updateInfo");
+          console.log("payload");
+        },1000)
+      }
+    }
+    updateInfo() {
+      this.$store.dispatch('aupdateInfo',"我是哈哈哈")
+
+    }
+    或者
+    actions： {
+      aupdateInfo(context,payload) {
+        setTimeout(()=>{
+          context.commit("updateInfo");
+          payload();
+        },1000)
+      }
+    }
+    updateInfo() {
+      this.$store.dispatch('aupdateInfo',()=>{
+        console.log("完成了");
+      })
+
+    }
+    多个参数
+    actions： {
+      aupdateInfo(context,payload) {
+        setTimeout(()=>{
+          context.commit("updateInfo");
+          console.log(payload.message);
+          payload.success();
+        },1000)
+      }
+    }
+    updateInfo() {
+      this.$store.dispatch('aupdateInfo',{
+        message: "我是哈哈哈"，
+        success: () => {
+          console.log("完成了");
+        }
+      })
+    }
+    或者使用Promise异步
+    actions： {
+      aupdateInfo(context){
+        return new Promise((resolve,reject) => {
+          setTimeout(()=>{
+          console.log(payload);
+
+          resolve('11111')
+        },1000)
+        })
+      }
+    }
+    updateInfo() {
+      this.$store
+      .dispatch('aupdateInfo',"我是哈哈哈")
+      .then(res => {
+        console.log("完成了");
+        console.log(res);    
+      })
+    }

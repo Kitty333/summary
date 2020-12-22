@@ -1,0 +1,22 @@
+1、箭头函数
+const ccc = (参数列表) => {}
+一个参数的话小括号可以去掉
+例子：
+const mul = (num1,num2) => {
+  return num1 * num2;
+}
+const mul = (num1,num2) => num1 * num2
+
+2、箭头函数this的使用
+像外层作用域中，一层层的查找this，直到有this的定义
+const obj = {
+  aaa(){
+    setTimeout(function(){
+      console.log(this);//window
+    })
+    setTimeout(() => {
+      console.log(this);//obj
+    })
+  }
+
+}

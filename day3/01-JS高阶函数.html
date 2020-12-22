@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  //filter/map/reduce
+  //filter回调函数有一个要求：必须返回一个布尔值，
+  //true的话，函数内部会自动将回调的n加入新数组
+  //false的话，函数内部会过滤掉这次的n
+  const nums = [10,50,7,60,45,78,66]
+  let total = nums.filter(function (n) {
+    return n<50;
+  })
+  console.log(total);
+
+  let newnums = total.map(function(n){
+    return n*2;
+  })
+  console.log(newnums);
+  
+  let totals = newnums.reduce(function(pre,n){
+    return pre + n
+  },0)
+  console.log(totals);
+
+  /* 简单的写法 */
+  let num = nums.filter(n => n<50).map(n => n*2).reduce((pre,n) => pre+n)
+  console.log(num);
+</script>
+</html>

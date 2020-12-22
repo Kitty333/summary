@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .line{
+    color: aqua;
+  }
+  .aaa{
+    color: blue;
+  }
+</style>
+<body>
+  <div id="app">
+  <!--   数组里面加了引号就是字符串，没有就是变量 -->
+    <h2 :class = "[line , active]">你真美</h2>
+    <h2 :class = "['line' ,' active']">你真美</h2>
+    <h2 :class = "getClass()">你真美</h2>
+  </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      line:"aaa",
+      active:"bbb"
+    },
+    methods:{
+      getClass:function(){
+        return ['line' ,' active']
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue列表的显示</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+     <!--  v-for=“变量 in 列表” -->
+     <!-- v-for=“（变量，index ）in 列表”  -->
+      <li v-for = "item in message"> {{item}} </li>
+      <li v-for = "(item,index) in message"> {{index}}-{{item}} </li>
+    </ul>
+  </div>
+  
+</body>
+
+<script src="./vue.js"></script>
+  <script>
+    //let（变量），const（常量），不用var没有作用域
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message : ["哈哈","嘻嘻","嘿嘿","拉拉"]
+      },
+    })
+  </script>
+
+</html>

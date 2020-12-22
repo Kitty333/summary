@@ -1,0 +1,23 @@
+1、配置路径
+{
+  path:"/home/:aaa",
+  component: "user"
+}
+2、然后组件中<router-link>的to属性动态获取
+    ：to=“/home/”+userId
+    data(){
+      return{
+        userId: "Lisi"
+      }
+    }
+  如何在<h2></h2>显示路径的userId？？？？？
+3、<h2>{{userID}}</h2>
+  computed:{
+    userId(){
+      return this.$route.params.aaa
+    }
+  }
+
+
+$route谁活就是哪个路由
+$router整个路由对象

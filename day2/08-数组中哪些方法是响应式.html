@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in letters"> {{item}} </li>
+    </ul>
+    <button @click = "btnClick">点我</button>
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      letters:["a","c","d","b"],
+    },
+    methods:{
+      btnClick(){
+        //push（）：向数组后面添加元素
+        //this.letters.push("a");
+        //this.letters.push("a","b","c");
+
+        //pop（）：删除数组最后一个
+        //this.letters.pop();
+
+        //shift():删除数组最前面一个元素
+        //this.letters.shift();
+
+        //unshift():在数组最前面添加元素,可以添加多个
+        //this.letters.unshift("a");
+        //this.letters.unshift("a","b","c");
+
+        //splice(),可以删除，修改，增加
+        //删除
+        //this.letters.splice(1,1);
+        //替换(删除2个然后换上去)
+        //this.letters.splice(1,2,"b","b");
+        //增加（第一个元素开始，加一个s）
+        //this.letters.splice(1,0,"s");
+
+        //通过索引值修改数组中的元素(是没有响应式的)
+        //this.letters[0] = "bbb"
+        //set（要修改的对象，索引值，修改后的值）
+        Vue.set(this.letters,1,"bbb")
+
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn>
+      <!-- 获取子组件中data的names -->
+      <template slot-scope="slot">
+        <!-- <span v-for="item in names">-{{item}}</span> -->
+        <!-- <span v-for="item in slot.hsn">-{{item}}</span> -->
+        <!-- <span>{{slot.hsn}}</span> -->
+        <!-- join('-')把一个数组转换成字符串，中间用-隔开 -->
+        <span> {{slot.hsn.join('-')}} </span>
+      </template>
+    </cpn>
+  </div>
+</body>
+<template id="cpn">
+  <div>
+    <slot :hsn="names">
+      <ul>
+        <li v-for="item in names">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+  
+</template>
+<script src="./vue.js"></script>
+<script>
+
+  const app = new Vue({
+    el:"#app",
+    data:{
+      names:["蛋糕","奶茶","QQ糖"]
+    },
+    components:{
+      cpn:{
+        template:"#cpn",
+        data(){
+        return {
+          names:["蛋糕","奶茶","QQ糖"]
+        }
+      }
+      }
+    }
+  })
+</script>
+</html>

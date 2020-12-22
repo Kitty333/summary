@@ -1,0 +1,32 @@
+  引入js的时候使用type="module"防止命名的冲突，当成了一个模块
+  export导出，import导入
+
+  导入：import {flag，sun} from "./aaa.js"
+
+  导出变量方式一
+    export{
+      flag,sum
+    }
+
+  导出变量方式二
+    export var num1 = 1000；
+    export var height =1.88
+
+  导出函数
+  export function num(num1,num2){
+    return num1 * num2;
+  }
+
+  导出类
+  export class Person{
+    run(){
+      console.log("在奔跑")
+    }
+  }
+  
+  导入后再const p = new Person();
+              p.run();
+
+  当一个模块包含某个功能，我们不希望这个功能命名，而是让导入者可以自己来命名，使用export default
+  export default只允许存在一个
+  然后导入的时候名字可以随便写import 导入者自己命名 from "./aaa.js"

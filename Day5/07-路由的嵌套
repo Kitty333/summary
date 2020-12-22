@@ -1,0 +1,20 @@
+先创建子组件，然后在路由中配置映射关系
+父组件中加上
+{
+  path： "/home",
+  component: Home,
+  children[
+    {
+      path: "news" ,  (不需要/news)
+      component: New
+    },
+    {
+      ....
+    }
+  ]
+}
+
+
+在父组件添加一个router-link和router-view
+<router-linl to="/home/news"></router-link>
+    这里的路径要写完整

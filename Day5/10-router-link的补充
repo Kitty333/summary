@@ -1,0 +1,11 @@
+1、tag可以更改<router-link>的标签
+  比如tag=“button”,该标签就为button标签
+2、在配置路由中设置默认路径
+{
+  path："",
+  重定向
+  redirect:"/home"
+}
+
+3、在创建路由对象里面加mode： “history”，可以返回之前的页面（replace不会返回之前页面）
+   加linkActiveClass：“active” 点击之后会出现active样式

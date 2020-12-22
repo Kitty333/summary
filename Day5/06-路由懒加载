@@ -1,0 +1,13 @@
+懒加载的主要作用是将路由对应的组件打包成一个个的js代码块
+
+  import About from '../components/About.vue'
+  { 
+    path:"/about",
+    component:About
+  }
+  打包成
+  const About = () => import(../components/About)
+  { 
+    path:"/about",
+    component:About
+  }

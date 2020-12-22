@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象语法使用v-bind绑定style</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 直接写属性值的话要加引号 -->
+    <p :style="{fontSize:'30px'}">你真美</p>
+    <p :style="{fontSize:size + 'px'}">你真美</p>
+    <!-- <p ：style="{key(属性):value（属性值）}">你真美</p> -->
+    <p :style="{color:ccolor,background:bcolor}">你真美</p>
+    <p :style="{color:ccolor,background:bcolor}">你真美</p>
+  </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      size: "30",
+      ccolor:"red",
+      bcolor:"blue"
+    }
+  })
+</script>
+</html>

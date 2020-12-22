@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- lazy修饰符要等到回车才会同步 -->
+    <input type="text" v-model.lazy="message">
+    <h2> {{message}} </h2>
+
+    <!-- age的typepf为string  
+    要number修饰符typeof才是number-->
+    <input type="number" v-model.number="age">
+    <h2> {{age}} </h2>
+
+    <!-- 使用.trim的话，自动去掉你输入的空格 -->
+    <input type="text" v-model.trim = "name">
+    <h2> {{name}} </h2>
+
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message:"你好呀",
+      age:20,
+      name:""
+    }
+  })
+</script>
+</html>

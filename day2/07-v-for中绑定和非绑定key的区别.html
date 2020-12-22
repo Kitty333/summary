@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+   <!--  加了key作用是为了高效的更新虚拟DOM，
+    使用key来给每个节点做一个唯一标识（key一定要是唯一的）
+    Diff算法就可以正确找到位置插入新节点 -->
+    <ul>
+      <li v-for="book in books" key="book"> {{book}} </li>
+    </ul>
+  </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      books:["lala","haha","xixi"]
+    }
+  })
+</script>
+</html>

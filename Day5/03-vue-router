@@ -1,0 +1,43 @@
+1、安装路由
+  vue create 自定义文件名(不要大写)     创建项目
+  npm install vue-router --save
+  yarn add vue-router -S  或      
+  npm install vue-router -D           安装vue-router
+  npm run serve  或
+  yarn serve                          运行项目（记得要cd到项目里面）
+
+2、在模块化工程中使用它（因为是一个插件，所以vue.use()来安装路由功能）
+  -第一步：导入路由对象，并且调用vue.use（）
+  -第二步：创建路由实例，平传入路由映射配置
+  -第三步：在Vue实例中挂载创建的路由实例
+
+3、使用Vue-router的步骤
+  -第一步：创建路由组件
+  -第二步：配置路由映射（组件和路径映射关系）
+  -第三步：使用路由：通过<router-link><router-view>
+
+4、设置一个默认事件
+  
+
+5、router-link的一些属性
+    属性to：用于指定跳转的路径
+    属性tag：指定router-link被渲染成什么组件
+    属性replace：不会保留history记录
+    属性active-class：router-link和默认的路由匹配成功，会自动设置一个
+        router-link-active的class
+
+6、路由代码跳转
+  <button @click="homeclick">首页</button>
+  <button @click="aboutclick">关于</button>
+  methods: {
+    homeclick(){
+      //用代码的方式修改路由
+      /* this.$router.push('/home'); */
+      this.$router.replace('/home');
+      console.log("homeclick");
+    },
+    aboutclick(){
+      /* this.$router.push('/about'); */
+      this.$router.replace('/about');
+      console.log("aboutclick");
+    }
